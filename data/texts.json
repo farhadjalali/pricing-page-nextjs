@@ -1,0 +1,11 @@
+{
+  "en-US": {
+    "page.pricing.title": "Pricing",
+    "plan.free": "free",
+    "plan.payment.type.annually": "Annually",
+    "plan.payment.type.monthly": "Monthly",
+    "plan.month": "month",
+    "pricing.clarification": "All prices on this website are excluding VAT (if applicable). Free 7 day trial for Explorer package starts directly with each sign up.",
+    "price.features.title": "Compare Features"
+  }
+}
