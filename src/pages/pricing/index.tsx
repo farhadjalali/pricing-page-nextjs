@@ -48,9 +48,11 @@ const PricingPage: React.FC<Props> = ({ plans, compareFeatures, page, $t }) => {
           {$t["pricing.clarification"]}
         </PricingClarification>
 
-        <FeaturesTitle>{$t["price.features.title"]}</FeaturesTitle>
-
-        <FeaturesTable compareFeatures={compareFeatures} />
+        <FeaturesTable
+          $t={$t}
+          compareFeatures={compareFeatures}
+          plans={plans}
+        />
       </Main>
     </>
   );
@@ -64,10 +66,10 @@ export async function getStaticProps({ locale }: NextPageContext) {
   const [page] = await cmsClient.fetch(`*[_type == "page-meta" && name == "pricing" && locale == "${locale}"]`); // prettier-ignore
   assert(page, "Page meta data not found in CMS!");
 
-  const plans = await cmsClient.fetch(`*[_type == "price-plan"]`);
+  const plans = await cmsClient.fetch(`*[_type == "price-plan"] | order(index asc)`); // prettier-ignore
   assert(plans, "Plans not found in CMS!");
 
-  const compareFeatures = await cmsClient.fetch(`*[_type == "compare-feature"]`); // prettier-ignore
+  const compareFeatures = await cmsClient.fetch(`*[_type == "compare-feature"]  | order(index asc)`); // prettier-ignore
   assert(compareFeatures, "Compare features not found in CMS!");
 
   return {

@@ -16,11 +16,9 @@ type Props = {
 };
 
 export const PricingPlans: React.FC<Props> = ({ plans, $t }) => {
-  const sortedPlans = plans.sort((p1, p2) => p1.index - p2.index);
-
   return (
     <Component>
-      {sortedPlans.map(
+      {plans.map(
         ({
           title,
           name,
@@ -34,7 +32,9 @@ export const PricingPlans: React.FC<Props> = ({ plans, $t }) => {
 
             <PriceWrapper>
               {monthlyPrice ? (
-                <Price>${monthlyPrice}/month</Price>
+                <Price>
+                  ${monthlyPrice}/{$t["plan.month"]}
+                </Price>
               ) : (
                 <Price>{$t["plan.free"]}</Price>
               )}

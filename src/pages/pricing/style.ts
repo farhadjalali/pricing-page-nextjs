@@ -46,11 +46,3 @@ export const PricingClarification = styled.div`
   color: #7a7998;
 `;
 
-export const FeaturesTitle = styled.h2`
-  font-style: normal;
-  font-weight: 500;
-  font-size: 32px;
-  line-height: 125%;
-  text-align: center;
-  color: #0d0c43;
-`;
