@@ -12,17 +12,13 @@ import { PricingPlans } from "@/components/pricing-plans/PricingPlans";
 import { FeaturesTable } from "@/components/features-table/FeaturesTable";
 import assert from "assert";
 import { NextPageContext } from "next";
-import { I18n, PricePlan } from "@/types";
+import { type PageMeta, type I18n, type PricePlan } from "@/types";
 
 type Props = {
   plans: PricePlan[];
   compareFeatures: any[];
   $t: I18n;
-  page: {
-    title: string;
-    description: string;
-    keywords: string;
-  };
+  page: PageMeta;
 };
 
 const PricingPage: React.FC<Props> = ({ plans, compareFeatures, page, $t }) => {
