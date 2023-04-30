@@ -29,7 +29,7 @@ Now, please open [http://localhost:3000](http://localhost:3000) with your browse
 * [x] SEO
 * [ ] PWA
 * [x] Multi language (locale)
-* [ ] Test (unit, integration, e2e)
+* [x] Test (unit, integration, e2e)
 * [x] Push to GitHub
 * [ ] CI/CD (GitHub Actions)
 * [x] Documentation (README.md)

@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "test:e2e": "cypress open",
     "lint": "next lint"
   },
   "dependencies": {
@@ -17,11 +18,13 @@
     "next": "13.3.1",
     "next-sanity": "^4.2.0",
     "react": "18.2.0",
+    "react-device-detect": "^2.2.3",
     "react-dom": "18.2.0",
     "styled-components": "^5.3.10",
     "typescript": "5.0.4"
   },
   "devDependencies": {
-    "@types/styled-components": "^5.1.26"
+    "@types/styled-components": "^5.1.26",
+    "cypress": "^12.11.0"
   }
 }
