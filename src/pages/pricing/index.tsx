@@ -1,5 +1,5 @@
 import { cmsClient, getLocalizedTexts } from "@/utils";
-import { Main, PageTitle } from "./style";
+import { Page, PageTitle } from "./style";
 import Head from "next/head";
 import { PricingPlans } from "@/components/pricing-plans/PricingPlans";
 import { CompareFeatures } from "@/components/compare-features/CompareFeatures";
@@ -23,13 +23,13 @@ const PricingPage: React.FC<Props> = ({ plans, features, page, $t }) => {
         <meta name="keywords" content={page.keywords} />
       </Head>
 
-      <Main>
+      <Page>
         <PageTitle>{$t["page.pricing.title"]}</PageTitle>
 
         <PricingPlans plans={plans} $t={$t} />
 
         <CompareFeatures $t={$t} features={features} plans={plans} />
-      </Main>
+      </Page>
     </>
   );
 };

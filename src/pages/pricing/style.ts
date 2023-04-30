@@ -1,10 +1,11 @@
 import styled from "styled-components";
 
-export const Main = styled.div`
+export const Page = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-bottom: 150px;
 `;
 
 export const PageTitle = styled.h1`

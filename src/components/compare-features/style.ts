@@ -6,14 +6,29 @@ export const Component = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 150px 0;
+  box-sizing: border-box;
+  @media (min-width: 768px) {
+    padding: 0 25px;
+  }
+
+  [data-plan-column="1"] {
+    display: none;
+  }
+  [data-plan-column="2"] {
+    display: none;
+  }
+  [data-plan-column="3"] {
+    display: none;
+  }
 `;
 
 export const FeaturesWrapper = styled.div`
   width: 100%;
   box-sizing: border-box;
-  border-left: 1px solid #e5f4f5;
-  border-right: 1px solid #e5f4f5;
+  @media (min-width: 768px) {
+    border-left: 1px solid #e5f4f5;
+    border-right: 1px solid #e5f4f5;
+  }
 `;
 
 export const FeatureGroup = styled.div``;
@@ -24,23 +39,45 @@ export const FeatureGroupTitleWrapper = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  @media (max-width: 768px) {
+    justify-content: flex-start;
+  }
+  gap: 8px;
   border-bottom: 1px solid #e5f4f5;
   padding: 0 24px;
+  :hover {
+    background: #f7fdfd;
+  }
 `;
 
-export const FeatureGroupTitle = styled.h3`
+export const FeatureGroupTitle = styled.h3<{ expanded: boolean }>`
   font-weight: 300;
   font-size: 18px;
   line-height: 140%;
   display: flex;
   gap: 8px;
   color: #7a7998;
+  @media (max-width: 768px) {
+    font-size: 14px;
+    font-weight: 400;
+    order: 2;
+    color: ${({ expanded }) => (expanded ? "#00B2C8" : "#7a7998")};
+  }
 `;
 
 export const FeatureRow = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
+  background: #ffffff;
+  box-sizing: border-box;
+  @media (max-width: 768px) {
+    padding-right: 16px;
+  }
+  :hover {
+    background: #f7fdfd;
+    border-radius: 8px;
+  }
 `;
 
 export const FeatureTitle = styled.h4`
@@ -49,7 +86,7 @@ export const FeatureTitle = styled.h4`
   font-size: 16px;
   line-height: 125%;
   color: #0d0c43;
-  padding: 0 24px;
+  padding: 0 16px;
 `;
 
 export const FeatureCompareItem = styled.div`
@@ -57,15 +94,20 @@ export const FeatureCompareItem = styled.div`
   text-align: center;
 `;
 
-export const FeatureCompareItemBorder = styled.div`
-  display: inline;
-  background: #e4fafc;
+export const FeatureCompareItemBorder = styled.div<{ isFreePlan: boolean }>`
+  display: inline-block;
+  background-color: ${({ isFreePlan }) => (isFreePlan ? "#f8f8ff" : "#e4fafc")};
+  color: ${({ isFreePlan }) => (isFreePlan ? "#7a7998" : "#0d0c43")};
   border-radius: 29px;
-  padding: 5px 20px;
+  padding: 6px 0;
+  width: 110px;
+  text-align: center;
+  box-sizing: border-box;
 `;
 
 export const GroupsPanel = styled.div<{ expanded: boolean }>`
   display: ${({ expanded }) => (expanded ? "block" : "none")};
+  padding: 8px;
 `;
 
 export const Title = styled.h2`
@@ -82,26 +124,63 @@ export const PlansHeader = styled.div`
   position: sticky;
   top: 0;
   display: flex;
-  padding-left: 300px;
+  border: 1px solid #e5f4f5;
+
+  @media (min-width: 768px) {
+    padding-left: 300px;
+    border-radius: 12px 12px 0 0;
+  }
+
+  @media (max-width: 768px) {
+    justify-content: flex-end;
+    padding-right: 20px;
+    border-left: none;
+    border-right: none;
+  }
+
   padding-top: 10px;
   padding-bottom: 10px;
   width: 100%;
   box-sizing: border-box;
   background-color: #f7fdfd;
-  border: 1px solid #e5f4f5;
-  border-radius: 12px 12px 0 0;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  color: #0d0c43;
+`;
+
+export const PlansHeaderSelect = styled.select`
+  border: none;
+  background-color: transparent;
+  font-size: inherit;
+  font-weight: inherit;
+  outline: none;
+  width: 50%;
+  text-align: right;
+  padding-right: 20px;
 `;
 
 export const PlansHeaderItem = styled.div`
   flex: 1;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 22px;
-
   text-align: center;
+`;
 
-  /* Main Dark Text */
-
-  color: #0d0c43;
+export const ShowAvailableExchangeLink = styled.a`
+  width: 100%;
+  text-align: center;
+  box-sizing: border-box;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 125%;
+  text-decoration-line: underline;
+  :hover {
+    text-decoration-line: none;
+  }
+  color: #00b2c8;
+  cursor: pointer;
+  padding: 30px;
+  border: 1px solid #e5f4f5;
+  border-top: none;
+  border-radius: 0 0 12px 12px;
 `;

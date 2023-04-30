@@ -10,8 +10,10 @@ import {
   FeatureTitle,
   FeaturesWrapper,
   GroupsPanel,
+  PlansHeaderSelect,
   PlansHeader,
   PlansHeaderItem,
+  ShowAvailableExchangeLink,
   Title,
 } from "./style";
 import { DropdownDownArrow } from "@/assets/DropdownDownArrow";
@@ -20,6 +22,7 @@ import { PlanFeature } from "@/types/PlanFeature";
 import { CheckNoIcon } from "@/assets/CheckNoIcon";
 import { CheckYesIcon } from "@/assets/CheckYesIcon";
 import { QuestionMark } from "@/assets/QuestionMark";
+import { isMobile } from "react-device-detect";
 
 type Props = {
   $t: I18n;
@@ -27,17 +30,15 @@ type Props = {
   plans: PricePlan[];
 };
 
-export const CompareFeatures: React.FC<Props> = ({
-  features: compareFeatures,
-  $t,
-  plans,
-}) => {
-  const [expands, setExpands] = useState<{ [index: string]: boolean }>({});
+export const CompareFeatures: React.FC<Props> = ({ features, $t, plans }) => {
+  const [groupExpands, setGroupExpands] = useState<{
+    [index: string]: boolean;
+  }>({});
 
   function toggleExpandGroup(featureGroup: CompareFeature) {
-    setExpands({
-      ...expands,
-      [featureGroup.index]: !expands[featureGroup.index],
+    setGroupExpands({
+      ...groupExpands,
+      [featureGroup.index]: !groupExpands[featureGroup.index],
     });
   }
 
@@ -47,13 +48,15 @@ export const CompareFeatures: React.FC<Props> = ({
   }) => {
     const value = (feature.compare || [])[plan.index];
     return (
-      <FeatureCompareItem key={plan.index}>
+      <FeatureCompareItem data-plan-column={plan.index} key={plan.index}>
         {!value ? (
           <CheckNoIcon />
         ) : value == "Y" ? (
           <CheckYesIcon />
         ) : (
-          <FeatureCompareItemBorder>{value}</FeatureCompareItemBorder>
+          <FeatureCompareItemBorder isFreePlan={plan.index == 0}>
+            {value}
+          </FeatureCompareItemBorder>
         )}
       </FeatureCompareItem>
     );
@@ -63,26 +66,39 @@ export const CompareFeatures: React.FC<Props> = ({
     <Component>
       <Title>{$t["price.features.title"]}</Title>
 
+      {isMobile && (
+        <div>
+          Choose plan:{" "}
+          <PlansHeaderSelect>
+            {plans.map((plan) => (
+              <option key={plan.index}>{plan.title}</option>
+            ))}
+          </PlansHeaderSelect>
+        </div>
+      )}
+
       <PlansHeader>
         {plans.map((plan) => (
-          <PlansHeaderItem key={plan.index}>{plan.title}</PlansHeaderItem>
+          <PlansHeaderItem data-plan-column={plan.index} key={plan.index}>
+            {plan.title}
+          </PlansHeaderItem>
         ))}
       </PlansHeader>
 
       <FeaturesWrapper>
-        {compareFeatures.map((featureGroup) => (
+        {features.map((featureGroup) => (
           <FeatureGroup key={featureGroup.index}>
             <FeatureGroupTitleWrapper
               onClick={() => toggleExpandGroup(featureGroup)}
             >
-              <FeatureGroupTitle>
+              <FeatureGroupTitle expanded={groupExpands[featureGroup.index]}>
                 {featureGroup.group}
                 {!!featureGroup.comment && <QuestionMark />}
               </FeatureGroupTitle>
               <DropdownDownArrow />
             </FeatureGroupTitleWrapper>
 
-            <GroupsPanel expanded={expands[featureGroup.index]}>
+            <GroupsPanel expanded={groupExpands[featureGroup.index]}>
               {featureGroup.features.map((feature) => (
                 <FeatureRow key={feature.title}>
                   <FeatureTitle>
@@ -102,6 +118,10 @@ export const CompareFeatures: React.FC<Props> = ({
           </FeatureGroup>
         ))}
       </FeaturesWrapper>
+
+      <ShowAvailableExchangeLink>
+        {$t["pricing.features.show-available-exchange"]}
+      </ShowAvailableExchangeLink>
     </Component>
   );
 };
