@@ -16,20 +16,20 @@ Now, please open [http://localhost:3000](http://localhost:3000) with your browse
 ---
 
 ## Task parts
-* [x] Implement responsive UX
+* [x] Implement the responsive UI/UX
 * [x] Implement functionality 
 * [x] Support Typescript
-* [ ] Manual check (Lighthouse) 
-* [ ] Manual check on different browsers / devices
 * [x] Code efficiency, readability, maintainability, scalability, etc.
 * [x] Performance
-* [ ] Theme
+* [x] Theming
 * [x] Connect to a headless CMS (Sanity)
 * [x] Security
 * [x] SEO
-* [ ] PWA
 * [x] Multi language (locale)
 * [x] Test (unit, integration, e2e)
 * [x] Push to GitHub
-* [ ] CI/CD (GitHub Actions)
 * [x] Documentation (README.md)
+* [ ] CI/CD (GitHub Actions)
+* [ ] Manual check (Lighthouse) 
+* [ ] Manual check on different browsers / devices
+* [ ] PWA

@@ -5,7 +5,7 @@ export const Component = styled.section`
   gap: 25px;
   @media screen and (min-width: 768px) {
     grid-template-columns: repeat(4, 1fr);
-    max-width: 1300px;
+    max-width: 1200px;
   }
   padding: 40px 25px 54px 25px;
 `;
@@ -59,7 +59,7 @@ export const Headline = styled.div`
 `;
 
 export const BenefitsWrapper = styled.div`
-  padding: 22px;
+  padding: 24px 16px;
   height: 100%;
   display: flex;
   flex-direction: column;
