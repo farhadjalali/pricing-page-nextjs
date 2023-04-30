@@ -46,22 +46,25 @@ export const FeatureGroupTitleWrapper = styled.div`
   border-bottom: 1px solid #e5f4f5;
   padding: 0 24px;
   :hover {
-    background: #f7fdfd;
+    background-color: ${({ theme }) => theme.colors.Blue100};
   }
 `;
 
-export const FeatureGroupTitle = styled.h3<{ expanded: boolean }>`
+export const FeatureGroupTitle = styled.h3<{
+  expanded: boolean;
+}>`
   font-weight: 300;
   font-size: 18px;
   line-height: 140%;
   display: flex;
   gap: 8px;
-  color: #7a7998;
+  color: ${({ theme }) => theme.colors.Grey400};
   @media (max-width: 768px) {
     font-size: 14px;
     font-weight: 400;
     order: 2;
-    color: ${({ expanded }) => (expanded ? "#00B2C8" : "#7a7998")};
+    color: ${({ expanded, theme }) =>
+      expanded ? theme.colors.Primary : theme.colors.Grey400};
   }
 `;
 
@@ -69,13 +72,13 @@ export const FeatureRow = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
-  background: #ffffff;
+  background-color: #ffffff;
   box-sizing: border-box;
   @media (max-width: 768px) {
     padding-right: 16px;
   }
   :hover {
-    background: #f7fdfd;
+    background-color: ${({ theme }) => theme.colors.Blue100};
     border-radius: 8px;
   }
 `;
@@ -85,7 +88,7 @@ export const FeatureTitle = styled.h4`
   font-weight: 400;
   font-size: 16px;
   line-height: 125%;
-  color: #0d0c43;
+  color: ${({ theme }) => theme.colors.DarkText};
   padding: 0 16px;
 `;
 
@@ -96,8 +99,10 @@ export const FeatureCompareItem = styled.div`
 
 export const FeatureCompareItemBorder = styled.div<{ isFreePlan: boolean }>`
   display: inline-block;
-  background-color: ${({ isFreePlan }) => (isFreePlan ? "#f8f8ff" : "#e4fafc")};
-  color: ${({ isFreePlan }) => (isFreePlan ? "#7a7998" : "#0d0c43")};
+  background-color: ${({ isFreePlan, theme }) =>
+    isFreePlan ? theme.colors.GhostWhite : "#e4fafc"};
+  color: ${({ isFreePlan, theme }) =>
+    isFreePlan ? theme.colors.Grey400 : theme.colors.DarkText};
   border-radius: 29px;
   padding: 6px 0;
   width: 110px;
@@ -116,7 +121,7 @@ export const Title = styled.h2`
   font-size: 32px;
   line-height: 125%;
   text-align: center;
-  color: #0d0c43;
+  color: ${({ theme }) => theme.colors.DarkText};
   margin: 32px 0;
 `;
 
@@ -142,11 +147,11 @@ export const PlansHeader = styled.div`
   padding-bottom: 10px;
   width: 100%;
   box-sizing: border-box;
-  background-color: #f7fdfd;
+  background-color: ${({ theme }) => theme.colors.Blue100};
   font-weight: 500;
   font-size: 18px;
   line-height: 22px;
-  color: #0d0c43;
+  color: ${({ theme }) => theme.colors.DarkText};
 `;
 
 export const PlansHeaderSelect = styled.select`
@@ -177,7 +182,7 @@ export const ShowAvailableExchangeLink = styled.a`
   :hover {
     text-decoration-line: none;
   }
-  color: #00b2c8;
+  color: ${({ theme }) => theme.colors.Primary};
   cursor: pointer;
   padding: 30px;
   border: 1px solid #e5f4f5;

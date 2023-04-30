@@ -16,7 +16,7 @@ export const CardTitle = styled.h3`
   font-size: 24px;
   line-height: 125%;
   text-align: center;
-  color: #0d0c43;
+  color: ${({ theme }) => theme.colors.DarkText};
   margin: 16px;
 `;
 
@@ -26,7 +26,7 @@ export const Price = styled.div`
   font-weight: 500;
   font-size: 21px;
   line-height: 125%;
-  color: #0d0c43;
+  color: ${({ theme }) => theme.colors.DarkText};
 `;
 
 export const PriceMonthPhrase = styled.span`
@@ -37,7 +37,7 @@ export const PriceMonthPhrase = styled.span`
 `;
 
 export const PriceWrapper = styled.div`
-  background: #f8f8ff;
+  background: ${({ theme }) => theme.colors.GhostWhite};
   border-radius: 24px;
   height: 82px;
   display: flex;
@@ -51,7 +51,7 @@ export const Headline = styled.div`
   font-weight: 500;
   font-size: 16px;
   line-height: 125%;
-  color: #00b2c8;
+  color: ${({ theme }) => theme.colors.Primary};
   display: flex;
   align-items: center;
   gap: 8px;
@@ -77,8 +77,7 @@ export const BenefitsListItem = styled.li`
   font-size: 16px;
   line-height: 125%;
   padding: 7px 0;
-  /* Main Dark Text */
-  color: #0d0c43;
+  color: ${({ theme }) => theme.colors.DarkText};
 `;
 
 export const MonthlyComment = styled.div`
@@ -88,7 +87,7 @@ export const MonthlyComment = styled.div`
   line-height: 125%;
   padding-top: 4px;
   text-align: center;
-  color: #00b2c8;
+  color: ${({ theme }) => theme.colors.Primary};
 `;
 
 export const StartButton = styled.div`
@@ -107,7 +106,7 @@ export const StartButton = styled.div`
   letter-spacing: 0.01em;
   color: #ffffff;
   margin-top: auto;
-  background-color: #00b2c8;
+  background-color: ${({ theme }) => theme.colors.Primary};
   cursor: pointer;
   outline: none;
   transition: background-color 0.15s ease-in-out 0s,
@@ -135,7 +134,7 @@ export const Card = styled.div<{ hasTopHint: boolean }>`
 `;
 
 export const TopHint = styled.div`
-  background-color: #0d0c43;
+  background-color: ${({ theme }) => theme.colors.DarkText};
   color: #ffffff;
   width: 100%;
   padding: 10px 0 8px 0;
@@ -182,7 +181,7 @@ export const PricingClarification = styled.div`
   font-size: 16px;
   line-height: 125%;
   text-align: center;
-  color: #7a7998;
+  color: ${({ theme }) => theme.colors.Grey400};
   margin-bottom: 150px;
   @media screen and (max-width: 768px) {
     display: none;
@@ -190,20 +189,23 @@ export const PricingClarification = styled.div`
 `;
 
 export const PaymentTypeWrapper = styled.div`
-  background: #f8f8ff;
+  background: ${({ theme }) => theme.colors.GhostWhite};
   border-radius: 37px;
   display: flex;
   padding: 5px;
 `;
 
-export const PaymentTypeButton = styled.div.attrs({ role: "button" })<{
+export const PaymentTypeButton = styled.div.attrs({
+  role: "button",
+})<{
   selected?: boolean;
 }>`
   border: none;
   background-color: ${({ selected }) => (selected ? "white" : "transparent")};
-  color: ${({ selected }) => (selected ? "#00B2C8" : "#0D0C43")};
+  color: ${({ selected, theme }) =>
+    selected ? theme.colors.Primary : theme.colors.DarkText};
   :hover {
-    color: #00b2c8;
+    color: ${({ theme }) => theme.colors.Primary};
   }
   transition: color 0.3s ease-in-out 0s;
   font-weight: ${({ selected }) => (selected ? "800" : "500")};
