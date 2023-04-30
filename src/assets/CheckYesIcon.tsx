@@ -1,4 +1,4 @@
-export const SvgYes = () => (
+export const CheckYesIcon = () => (
   <svg
     width="32"
     height="32"

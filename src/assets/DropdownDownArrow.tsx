@@ -1,4 +1,4 @@
-export const SvgDown = () => (
+export const DropdownDownArrow = () => (
   <svg
     width="10"
     height="8"

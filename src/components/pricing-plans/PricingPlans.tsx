@@ -2,13 +2,24 @@ import { I18n, PricePlan } from "@/types";
 import {
   Headline,
   MonthlyComment,
-  Plan,
+  Card,
   Component,
   Price,
   PriceWrapper,
   StartButton,
-  Title,
+  CardTitle,
+  BgGradientRight,
+  BgGradientLeft,
+  TopHint,
+  PriceMonthPhrase,
+  BenefitsWrapper,
+  BenefitsList,
+  BenefitsListItem,
+  PricingClarification,
+  PaymentTypeButton,
+  PaymentTypeWrapper,
 } from "./style";
+import { PriceHeadlineArrow } from "@/assets/PriceHeadlineArrow";
 
 type Props = {
   $t: I18n;
@@ -17,42 +28,63 @@ type Props = {
 
 export const PricingPlans: React.FC<Props> = ({ plans, $t }) => {
   return (
-    <Component>
-      {plans.map(
-        ({
-          title,
-          name,
-          monthlyPrice,
-          monthlyPriceComment,
-          headline,
-          benefits,
-        }) => (
-          <Plan key={name}>
-            <Title>{title}</Title>
+    <>
+      <PaymentTypeWrapper>
+        <PaymentTypeButton selected>
+          {$t["plan.payment.type.annually"]}
+        </PaymentTypeButton>
 
-            <PriceWrapper>
-              {monthlyPrice ? (
-                <Price>
-                  ${monthlyPrice}/{$t["plan.month"]}
-                </Price>
-              ) : (
-                <Price>{$t["plan.free"]}</Price>
-              )}
-              <MonthlyComment>{monthlyPriceComment}</MonthlyComment>
-            </PriceWrapper>
+        <PaymentTypeButton>{$t["plan.payment.type.monthly"]}</PaymentTypeButton>
+      </PaymentTypeWrapper>
 
-            <Headline>{headline}</Headline>
+      <Component>
+        <BgGradientRight />
+        <BgGradientLeft />
+        {plans.map(
+          ({
+            title,
+            name,
+            monthlyPrice,
+            monthlyPriceComment,
+            headline,
+            benefits,
+            topHint,
+          }) => (
+            <Card key={name} hasTopHint={!!topHint}>
+              {topHint && <TopHint>{topHint}</TopHint>}
 
-            <ul>
-              {benefits.map((benefit) => (
-                <li key={benefit}>{benefit}</li>
-              ))}
-            </ul>
+              <CardTitle>{title}</CardTitle>
 
-            <StartButton>{$t["plan.get-started"]}</StartButton>
-          </Plan>
-        )
-      )}
-    </Component>
+              <PriceWrapper>
+                {monthlyPrice ? (
+                  <Price>
+                    ${monthlyPrice}{" "}
+                    <PriceMonthPhrase> /{$t["plan.month"]}</PriceMonthPhrase>
+                  </Price>
+                ) : (
+                  <Price>{$t["plan.free"]}</Price>
+                )}
+                <MonthlyComment>{monthlyPriceComment}</MonthlyComment>
+              </PriceWrapper>
+
+              <BenefitsWrapper>
+                <Headline>
+                  <span>{headline}</span>
+                  {!!monthlyPrice && <PriceHeadlineArrow />}
+                </Headline>
+
+                <BenefitsList>
+                  {benefits.map((benefit) => (
+                    <BenefitsListItem key={benefit}>{benefit}</BenefitsListItem>
+                  ))}
+                </BenefitsList>
+                <StartButton>{$t["plan.get-started"]}</StartButton>
+              </BenefitsWrapper>
+            </Card>
+          )
+        )}
+      </Component>
+      <PricingClarification>{$t["pricing.clarification"]}</PricingClarification>
+    </>
   );
 };

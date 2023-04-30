@@ -1,27 +1,20 @@
 import { cmsClient, getLocalizedTexts } from "@/utils";
-import {
-  FeaturesTitle,
-  Main,
-  PageTitle,
-  PaymentTypeButton,
-  PaymentTypeWrapper,
-  PricingClarification,
-} from "./style";
+import { Main, PageTitle } from "./style";
 import Head from "next/head";
 import { PricingPlans } from "@/components/pricing-plans/PricingPlans";
-import { FeaturesTable } from "@/components/features-table/FeaturesTable";
+import { CompareFeatures } from "@/components/compare-features/CompareFeatures";
 import assert from "assert";
 import { NextPageContext } from "next";
 import { type PageMeta, type I18n, type PricePlan } from "@/types";
 
 type Props = {
   plans: PricePlan[];
-  compareFeatures: any[];
+  features: any[];
   $t: I18n;
   page: PageMeta;
 };
 
-const PricingPage: React.FC<Props> = ({ plans, compareFeatures, page, $t }) => {
+const PricingPage: React.FC<Props> = ({ plans, features, page, $t }) => {
   return (
     <>
       <Head>
@@ -32,27 +25,10 @@ const PricingPage: React.FC<Props> = ({ plans, compareFeatures, page, $t }) => {
 
       <Main>
         <PageTitle>{$t["page.pricing.title"]}</PageTitle>
-        <PaymentTypeWrapper>
-          <PaymentTypeButton selected>
-            {$t["plan.payment.type.annually"]}
-          </PaymentTypeButton>
-
-          <PaymentTypeButton>
-            {$t["plan.payment.type.monthly"]}
-          </PaymentTypeButton>
-        </PaymentTypeWrapper>
 
         <PricingPlans plans={plans} $t={$t} />
 
-        <PricingClarification>
-          {$t["pricing.clarification"]}
-        </PricingClarification>
-
-        <FeaturesTable
-          $t={$t}
-          compareFeatures={compareFeatures}
-          plans={plans}
-        />
+        <CompareFeatures $t={$t} features={features} plans={plans} />
       </Main>
     </>
   );
@@ -69,10 +45,10 @@ export async function getStaticProps({ locale }: NextPageContext) {
   const plans = await cmsClient.fetch(`*[_type == "price-plan"] | order(index asc)`); // prettier-ignore
   assert(plans, "Plans not found in CMS!");
 
-  const compareFeatures = await cmsClient.fetch(`*[_type == "compare-feature"]  | order(index asc)`); // prettier-ignore
-  assert(compareFeatures, "Compare features not found in CMS!");
+  const features = await cmsClient.fetch(`*[_type == "compare-feature"]  | order(index asc)`); // prettier-ignore
+  assert(features, "Compare features not found in CMS!");
 
   return {
-    props: { compareFeatures, plans, page, $t },
+    props: { features, plans, page, $t },
   };
 }

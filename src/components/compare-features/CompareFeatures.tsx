@@ -14,20 +14,21 @@ import {
   PlansHeaderItem,
   Title,
 } from "./style";
-import { SvgDown } from "@/assets/SvgDown";
+import { DropdownDownArrow } from "@/assets/DropdownDownArrow";
 import { useState } from "react";
 import { PlanFeature } from "@/types/PlanFeature";
-import { SvgNo } from "@/assets/SvgNo";
-import { SvgYes } from "@/assets/SvgYes";
+import { CheckNoIcon } from "@/assets/CheckNoIcon";
+import { CheckYesIcon } from "@/assets/CheckYesIcon";
+import { QuestionMark } from "@/assets/QuestionMark";
 
 type Props = {
   $t: I18n;
-  compareFeatures: CompareFeature[];
+  features: CompareFeature[];
   plans: PricePlan[];
 };
 
-export const FeaturesTable: React.FC<Props> = ({
-  compareFeatures,
+export const CompareFeatures: React.FC<Props> = ({
+  features: compareFeatures,
   $t,
   plans,
 }) => {
@@ -48,9 +49,9 @@ export const FeaturesTable: React.FC<Props> = ({
     return (
       <FeatureCompareItem key={plan.index}>
         {!value ? (
-          <SvgNo />
+          <CheckNoIcon />
         ) : value == "Y" ? (
-          <SvgYes />
+          <CheckYesIcon />
         ) : (
           <FeatureCompareItemBorder>{value}</FeatureCompareItemBorder>
         )}
@@ -74,14 +75,20 @@ export const FeaturesTable: React.FC<Props> = ({
             <FeatureGroupTitleWrapper
               onClick={() => toggleExpandGroup(featureGroup)}
             >
-              <FeatureGroupTitle>{featureGroup.group}</FeatureGroupTitle>
-              <SvgDown />
+              <FeatureGroupTitle>
+                {featureGroup.group}
+                {!!featureGroup.comment && <QuestionMark />}
+              </FeatureGroupTitle>
+              <DropdownDownArrow />
             </FeatureGroupTitleWrapper>
 
             <GroupsPanel expanded={expands[featureGroup.index]}>
               {featureGroup.features.map((feature) => (
                 <FeatureRow key={feature.title}>
-                  <FeatureTitle>{feature.title}</FeatureTitle>
+                  <FeatureTitle>
+                    {feature.title}
+                    {!!feature.comment && <QuestionMark />}
+                  </FeatureTitle>
                   {plans.map((plan) => (
                     <FeatureCompare
                       key={plan.index}

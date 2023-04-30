@@ -14,6 +14,12 @@ export const GlobalStyle = createGlobalStyle`
 
   @font-face {
     font-family: 'Sofia Pro';
+    src: local('Sofia Pro'), url(./fonts/SourceSansPro-SemiBold.ttf) format('truetype');
+    font-weight: 500;
+  }
+
+  @font-face {
+    font-family: 'Sofia Pro';
     src: local('Sofia Pro'), url(./fonts/SourceSansPro-Light.ttf) format('truetype');
     font-weight: 100;
   }
@@ -23,5 +29,5 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
     color-scheme: "light";
     font-family: 'Sofia Pro', sans-serif;
-  }
+  } 
 `;
