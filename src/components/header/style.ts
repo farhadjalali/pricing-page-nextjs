@@ -29,6 +29,7 @@ export const MenuItem = styled.div`
   display: flex;
   color: ${({ theme }) => theme.colors.DarkText};
   align-items: center;
+  justify-content: center;
   font-weight: 400;
   font-size: 16px;
   line-height: 125%;
@@ -65,9 +66,4 @@ export const MobileMenu = styled.a`
   }
 `;
 
-export const BrandLink = styled.a`
-  width: 205px;
-  @media (max-width: 768px) {
-    width: 170px;
-  }
-`;
+export const BrandLink = styled.a``;

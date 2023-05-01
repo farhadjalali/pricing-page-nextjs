@@ -23,7 +23,7 @@ export const FeaturesWrapper = styled.div`
 
 export const FeatureGroup = styled.div``;
 
-export const FeatureGroupTitleWrapper = styled.div`
+export const FeatureGroupTitleWrapper = styled.div<{ expanded: boolean }>`
   cursor: pointer;
   display: flex;
   flex-direction: row;
@@ -37,6 +37,12 @@ export const FeatureGroupTitleWrapper = styled.div`
   padding: 0 24px;
   :hover {
     background-color: ${({ theme }) => theme.colors.Blue100};
+  }
+
+  img.dropdown-arrow {
+    transition: transform 0.3s ease-in-out 0s;
+    transform: ${({ expanded }) =>
+      expanded ? "rotate(180deg)" : "rotate(0deg)"};
   }
 `;
 

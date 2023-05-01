@@ -70,6 +70,11 @@ export const Headline = styled.p`
   @media (max-width: 768px) {
     display: none;
   }
+
+  img {
+    vertical-align: middle;
+    margin-left: 4px;
+  }
 `;
 
 export const BenefitsWrapper = styled.div`

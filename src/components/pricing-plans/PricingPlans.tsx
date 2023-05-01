@@ -20,9 +20,7 @@ import {
   PaymentTypeWrapper,
   WhatsIncluded,
 } from "./style";
-import { PriceHeadlineArrow } from "@/components/pricing-plans/PriceHeadlineArrow";
-import { DropdownDownArrow } from "@/common/DropdownDownArrow";
-import { isMobile } from "react-device-detect";
+import Image from "next/image";
 
 type Props = {
   $t: I18n;
@@ -73,7 +71,14 @@ export const PricingPlans: React.FC<Props> = ({ plans, $t }) => {
               <BenefitsWrapper>
                 <Headline>
                   {headline}
-                  {!!monthlyPrice && <PriceHeadlineArrow />}
+                  {!!monthlyPrice && (
+                    <Image
+                      src="/images/price-headline-arrow.svg"
+                      alt="Price headline arrow"
+                      width={24}
+                      height={16}
+                    />
+                  )}
                 </Headline>
 
                 <BenefitsList>
@@ -85,7 +90,13 @@ export const PricingPlans: React.FC<Props> = ({ plans, $t }) => {
               </BenefitsWrapper>
 
               <WhatsIncluded>
-                {$t["pricing.whats-included"]} <DropdownDownArrow />
+                {$t["pricing.whats-included"]}{" "}
+                <Image
+                  src="/images/dropdown-arrow.svg"
+                  alt="Dropdown arrow"
+                  width={10}
+                  height={8}
+                />
               </WhatsIncluded>
             </Card>
           )

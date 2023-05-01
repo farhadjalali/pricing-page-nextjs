@@ -1,4 +1,3 @@
-import { BrandIcon } from "./BrandIcon";
 import {
   AuthWrapper,
   BrandLink,
@@ -10,9 +9,8 @@ import {
 } from "./style";
 import { MainMenu } from "@/types/MainMenu";
 import { I18n } from "@/types";
-import { MenuArrow } from "./MenuArrow";
-import { MobileMenuIcon } from "./MobileMenuIcon";
-import { MobileAuthIcon } from "./MobileAuthIcon";
+import Image from "next/image";
+import { isMobile } from "react-device-detect";
 
 type Props = {
   menu: MainMenu[];
@@ -23,18 +21,35 @@ export const Header: React.FC<Props> = ({ menu, $t }) => {
   return (
     <Component>
       <MobileMenu href="#">
-        <MobileMenuIcon />
+        <Image
+          src="/images/mobile-menu.svg"
+          alt="Mobile Menu"
+          width={48}
+          height={48}
+        />
       </MobileMenu>
 
       <BrandLink href="/">
-        <BrandIcon />
+        <Image
+          src="/images/brand.svg"
+          alt="Brand"
+          width={isMobile ? 170 : 205}
+          height={16}
+        />
       </BrandLink>
 
       <MenusWrapper>
         {menu.map((item) => (
           <MenuItem key={item.index}>
             {item.title}
-            {item.sub && <MenuArrow />}
+            {item.sub && (
+              <Image
+                src="/images/menu-arrow.svg"
+                alt="Menu arrow"
+                width={7}
+                height={6}
+              />
+            )}
           </MenuItem>
         ))}
       </MenusWrapper>
@@ -45,7 +60,12 @@ export const Header: React.FC<Props> = ({ menu, $t }) => {
       </AuthWrapper>
 
       <MobileMenu href="#">
-        <MobileAuthIcon />
+        <Image
+          src="/images/mobile-auth.svg"
+          alt="Signin / Sign-out"
+          width={38}
+          height={38}
+        />
       </MobileMenu>
     </Component>
   );

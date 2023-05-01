@@ -19,13 +19,11 @@ import {
   HelpMark,
   TooltipStyle,
 } from "./style";
-import { DropdownDownArrow } from "@/common/DropdownDownArrow";
 import { useState } from "react";
 import { PlanFeature } from "@/types/PlanFeature";
-import { CheckNoIcon } from "../../common/CheckNoIcon";
-import { CheckYesIcon } from "../../common/CheckYesIcon";
-import { QuestionMark } from "../../common/QuestionMark";
 import { Tooltip } from "react-tooltip";
+import Image from "next/image";
+import { QuestionMark } from "@/common/QuestionMark";
 
 type Props = {
   $t: I18n;
@@ -65,9 +63,19 @@ export const CompareFeatures: React.FC<Props> = ({ features, $t, plans }) => {
         key={plan.index}
       >
         {!value ? (
-          <CheckNoIcon />
+          <Image
+            src="/images/check-no-icon.svg"
+            alt="No"
+            width={32}
+            height={32}
+          />
         ) : value == "Y" ? (
-          <CheckYesIcon />
+          <Image
+            src="/images/check-yes-icon.svg"
+            alt="Tes"
+            width={32}
+            height={32}
+          />
         ) : (
           <FeatureCompareItemBorder isFreePlan={plan.index == 0}>
             {value}
@@ -104,6 +112,7 @@ export const CompareFeatures: React.FC<Props> = ({ features, $t, plans }) => {
         {features.map((featureGroup) => (
           <FeatureGroup key={featureGroup.index}>
             <FeatureGroupTitleWrapper
+              expanded={groupExpands[featureGroup.index]}
               onClick={() => toggleExpandGroup(featureGroup)}
             >
               <FeatureGroupTitle expanded={groupExpands[featureGroup.index]}>
@@ -121,7 +130,13 @@ export const CompareFeatures: React.FC<Props> = ({ features, $t, plans }) => {
                   </HelpMark>
                 )}
               </FeatureGroupTitle>
-              <DropdownDownArrow up={groupExpands[featureGroup.index]} />
+              <Image
+                className="dropdown-arrow"
+                src="/images/dropdown-arrow.svg"
+                alt="Dropdown"
+                width={10}
+                height={8}
+              />
             </FeatureGroupTitleWrapper>
 
             <GroupsPanel expanded={groupExpands[featureGroup.index]}>
