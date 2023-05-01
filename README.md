@@ -12,7 +12,7 @@ npm run build
 npm run start
 ```
 
-Now, please open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Now, please open [http://localhost:3000/pricing](http://localhost:3000/pricing) with your browser to see the result.
 
 ---
 

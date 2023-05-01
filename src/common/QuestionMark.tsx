@@ -3,8 +3,8 @@ import styled from "styled-components";
 const Border = styled.div`
   border: 1px solid #bee1e5;
   border-radius: 50%;
-  width: 24px;
-  height: 24px;
+  width: 26px;
+  height: 26px;
   display: grid;
   align-items: center;
   justify-items: center;
@@ -39,7 +39,7 @@ export const QuestionMark = () => (
       <path
         d="M12.0001 15.7058C11.8539 15.7058 11.7354 15.8243 11.7354 15.9705C11.7354 16.1167 11.8539 16.2352 12.0001 16.2352C12.1463 16.2352 12.2648 16.1167 12.2648 15.9705C12.2648 15.8243 12.1463 15.7058 12.0001 15.7058V15.7058"
         stroke="currentColor"
-        strokeWidth="1.3"
+        strokeWidth="1"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
