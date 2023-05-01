@@ -1,6 +1,5 @@
 import { cmsClient } from "@/utils/cmsClient";
 import { getLocalizedTexts } from "@/utils/getLocalizedTexts";
-import { Page, PageTitle } from "./style";
 import Head from "next/head";
 import { PricingPlans } from "@/components/pricing-plans/PricingPlans";
 import { CompareFeatures } from "@/components/compare-features/CompareFeatures";
@@ -10,6 +9,7 @@ import { type PageMeta, type I18n, type PricePlan } from "@/types";
 import { Header } from "@/components/header/Header";
 import { getMainMenu } from "@/utils/getMainMenu";
 import { MainMenu } from "@/types/MainMenu";
+import styled from "styled-components";
 
 type Props = {
   plans: PricePlan[];
@@ -18,6 +18,30 @@ type Props = {
   page: PageMeta;
   menu: MainMenu[];
 };
+
+const Page = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 150px;
+`;
+
+const PageTitle = styled.h1`
+  font-weight: bold;
+  font-size: 72px;
+  line-height: 105%;
+  text-align: center;
+  color: ${({ theme }) => theme.colors.DarkText};
+  padding: 56px 0 32px 0;
+  margin: 0;
+
+  @media (max-width: 768px) {
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 120%;
+  }
+`;
 
 const PricingPage: React.FC<Props> = ({ plans, features, page, $t, menu }) => {
   return (
