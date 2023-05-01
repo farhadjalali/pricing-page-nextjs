@@ -20,7 +20,8 @@ Now, please open [http://localhost:3000](http://localhost:3000) with your browse
 * [x] Implement the responsive UI/UX
 * [x] Implement functionality 
 * [x] Support Typescript
-* [x] Code efficiency, readability, maintainability, scalability, etc.
+* [x] Clean code
+* [x] Code efficiency, readability, maintainability
 * [x] Performance
 * [x] Theming
 * [x] Connect to a headless CMS (Sanity)

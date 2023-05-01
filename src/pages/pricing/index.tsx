@@ -5,7 +5,12 @@ import { PricingPlans } from "@/components/pricing-plans/PricingPlans";
 import { CompareFeatures } from "@/components/compare-features/CompareFeatures";
 import assert from "assert";
 import { NextPageContext } from "next";
-import { type PageMeta, type I18n, type PricePlan } from "@/types";
+import {
+  type PageMeta,
+  type I18n,
+  type PricePlan,
+  CompareFeature,
+} from "@/types";
 import { Header } from "@/components/header/Header";
 import { getMainMenu } from "@/utils/getMainMenu";
 import { MainMenu } from "@/types/MainMenu";
@@ -13,7 +18,7 @@ import styled from "styled-components";
 
 type Props = {
   plans: PricePlan[];
-  features: any[];
+  features: CompareFeature[];
   $t: I18n;
   page: PageMeta;
   menu: MainMenu[];
