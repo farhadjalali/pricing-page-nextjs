@@ -97,6 +97,11 @@ export const FeatureCompareItemBorder = styled.div<{ isFreePlan: boolean }>`
   width: 110px;
   text-align: center;
   box-sizing: border-box;
+
+  @media (min-width: 768px) and (max-width: 850px) {
+    width: 90px;
+    font-size: smaller;
+  }
 `;
 
 export const GroupsPanel = styled.div<{ expanded: boolean }>`
@@ -154,6 +159,7 @@ export const FeatureCompareItem = styled.div<{ visibleOnMobile: boolean }>`
   text-align: center;
   @media (max-width: 768px) {
     display: ${({ visibleOnMobile }) => (visibleOnMobile ? "block" : "none")};
+    text-align: right;
   }
 `;
 
@@ -175,6 +181,9 @@ export const ShowAvailableExchangeLink = styled.a`
   border: 1px solid #e5f4f5;
   border-top: none;
   border-radius: 0 0 12px 12px;
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 export const MobileChoosePlan = styled.div`
@@ -204,6 +213,7 @@ export const PlansHeaderSelect = styled.select`
   padding: 0 8px;
   width: auto;
   color: ${({ theme }) => theme.colors.DarkText};
+  cursor: pointer;
 `;
 
 export const HelpMark = styled.div``;
