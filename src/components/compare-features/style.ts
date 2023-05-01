@@ -53,6 +53,7 @@ export const FeatureGroupTitle = styled.h3<{
   font-size: 18px;
   line-height: 140%;
   display: flex;
+  align-items: center;
   gap: 8px;
   color: ${({ theme }) => theme.colors.Grey400};
   @media (max-width: 768px) {
