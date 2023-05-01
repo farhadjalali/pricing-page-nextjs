@@ -10,14 +10,14 @@ export const CheckNoIcon = () => (
     <path
       d="M20.9993 11.3333L11 20.6666"
       stroke="#7A7998"
-      stroke-width="2"
-      stroke-linecap="round"
+      strokeWidth="2"
+      strokeLinecap="round"
     />
     <path
       d="M11 11.3333L20.9993 20.6666"
       stroke="#7A7998"
-      stroke-width="2"
-      stroke-linecap="round"
+      strokeWidth="2"
+      strokeLinecap="round"
     />
   </svg>
 );

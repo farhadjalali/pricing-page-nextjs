@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { CSSProperties } from "styled-components";
 
 export const Component = styled.section`
   max-width: 1300px;
@@ -205,3 +205,16 @@ export const PlansHeaderSelect = styled.select`
   width: auto;
   color: ${({ theme }) => theme.colors.DarkText};
 `;
+
+export const HelpMark = styled.div``;
+
+export const TooltipStyle: CSSProperties = {
+  backgroundColor: "white",
+  color: "#666",
+  fontSize: "14px",
+  padding: "10px 20px",
+  borderRadius: "5px",
+  border: "1px solid #E5E5E5",
+  position: "absolute",
+  maxWidth: "300px",
+};

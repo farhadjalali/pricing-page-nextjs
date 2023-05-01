@@ -10,14 +10,14 @@ export const CheckYesIcon = () => (
     <path
       d="M10.0005 15.8034L14.0547 19.8306"
       stroke="#00B2C8"
-      stroke-width="2"
-      stroke-linecap="round"
+      strokeWidth="2"
+      strokeLinecap="round"
     />
     <path
       d="M22.0008 12.1699L14.0537 19.8301"
       stroke="#00B2C8"
-      stroke-width="2"
-      stroke-linecap="round"
+      strokeWidth="2"
+      strokeLinecap="round"
     />
   </svg>
 );

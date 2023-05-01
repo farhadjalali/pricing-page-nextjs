@@ -59,6 +59,7 @@ export const Login = styled(Button)`
 `;
 
 export const MobileMenu = styled.a`
+  cursor: pointer;
   @media (min-width: 1320px) {
     display: none;
   }

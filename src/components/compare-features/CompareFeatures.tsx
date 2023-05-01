@@ -16,13 +16,15 @@ import {
   ShowAvailableExchangeLink,
   Title,
   MobileChoosePlan,
+  HelpMark,
+  TooltipStyle,
 } from "./style";
-import { DropdownDownArrow } from "@/assets/DropdownDownArrow";
+import { DropdownDownArrow } from "@/common/DropdownDownArrow";
 import { useState } from "react";
 import { PlanFeature } from "@/types/PlanFeature";
-import { CheckNoIcon } from "@/assets/CheckNoIcon";
-import { CheckYesIcon } from "@/assets/CheckYesIcon";
-import { QuestionMark } from "@/assets/QuestionMark";
+import { CheckNoIcon } from "../../common/CheckNoIcon";
+import { CheckYesIcon } from "../../common/CheckYesIcon";
+import { QuestionMark } from "../../common/QuestionMark";
 import { Tooltip } from "react-tooltip";
 
 type Props = {
@@ -44,11 +46,12 @@ export const CompareFeatures: React.FC<Props> = ({ features, $t, plans }) => {
     });
   }
 
-  function getFeatureTooltipId(
-    featureGroup: CompareFeature,
-    feature: PlanFeature
-  ) {
-    return `feature-${featureGroup.index}-${feature.title.replace(/ /g, "-")}`;
+  function getFeatureTooltipId(group: CompareFeature, feature: PlanFeature) {
+    return `feature-${group.index}-${feature.title.replace(/ /g, "-")}`;
+  }
+
+  function getFeatureGroupTooltipId(group: CompareFeature) {
+    return `feature-${group.index}`;
   }
 
   const FeatureCompare: React.FC<{ plan: any; feature: PlanFeature }> = ({
@@ -105,7 +108,18 @@ export const CompareFeatures: React.FC<Props> = ({ features, $t, plans }) => {
             >
               <FeatureGroupTitle expanded={groupExpands[featureGroup.index]}>
                 {featureGroup.group}
-                {!!featureGroup.comment && <QuestionMark />}
+                {!!featureGroup.comment && (
+                  <HelpMark
+                    data-tooltip-id={getFeatureGroupTooltipId(featureGroup)}
+                    data-tooltip-content={featureGroup.comment}
+                  >
+                    <QuestionMark />
+                    <Tooltip
+                      style={TooltipStyle}
+                      id={getFeatureGroupTooltipId(featureGroup)}
+                    />
+                  </HelpMark>
+                )}
               </FeatureGroupTitle>
               <DropdownDownArrow up={groupExpands[featureGroup.index]} />
             </FeatureGroupTitleWrapper>
@@ -116,27 +130,19 @@ export const CompareFeatures: React.FC<Props> = ({ features, $t, plans }) => {
                   <FeatureTitle>
                     {feature.title}
                     {!!feature.comment && (
-                      <>
-                        <QuestionMark
-                          data-tooltip-id={getFeatureTooltipId(
-                            featureGroup,
-                            feature
-                          )}
-                          data-tooltip-content={feature.comment}
-                        />
+                      <HelpMark
+                        data-tooltip-id={getFeatureTooltipId(
+                          featureGroup,
+                          feature
+                        )}
+                        data-tooltip-content={feature.comment}
+                      >
+                        <QuestionMark />
                         <Tooltip
-                          style={{
-                            backgroundColor: "white",
-                            color: "#666",
-                            fontSize: "14px",
-                            padding: "10px 20px",
-                            borderRadius: "5px",
-                            border: "1px solid #E5E5E5",
-                            position: "absolute",
-                          }}
+                          style={TooltipStyle}
                           id={getFeatureTooltipId(featureGroup, feature)}
                         />
-                      </>
+                      </HelpMark>
                     )}
                   </FeatureTitle>
                   {plans.map((plan) => (

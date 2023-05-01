@@ -21,7 +21,7 @@ import {
   WhatsIncluded,
 } from "./style";
 import { PriceHeadlineArrow } from "@/components/pricing-plans/PriceHeadlineArrow";
-import { DropdownDownArrow } from "@/assets/DropdownDownArrow";
+import { DropdownDownArrow } from "@/common/DropdownDownArrow";
 import { isMobile } from "react-device-detect";
 
 type Props = {

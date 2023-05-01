@@ -22,7 +22,7 @@ type Props = {
 export const Header: React.FC<Props> = ({ menu, $t }) => {
   return (
     <Component>
-      <MobileMenu>
+      <MobileMenu href="#">
         <MobileMenuIcon />
       </MobileMenu>
 
@@ -44,7 +44,7 @@ export const Header: React.FC<Props> = ({ menu, $t }) => {
         <Signup>{$t["signup"]}</Signup>
       </AuthWrapper>
 
-      <MobileMenu>
+      <MobileMenu href="#">
         <MobileAuthIcon />
       </MobileMenu>
     </Component>
