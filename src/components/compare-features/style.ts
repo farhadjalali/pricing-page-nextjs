@@ -98,7 +98,7 @@ export const FeatureCompareItemBorder = styled.div<{ isFreePlan: boolean }>`
   text-align: center;
   box-sizing: border-box;
 
-  @media (min-width: 768px) and (max-width: 850px) {
+  @media (min-width: 768px) and (max-width: 900px) {
     width: 90px;
     font-size: smaller;
   }
@@ -117,6 +117,9 @@ export const Title = styled.h2`
   text-align: center;
   color: ${({ theme }) => theme.colors.DarkText};
   margin: 32px 0;
+  @media (max-width: 768px) {
+    margin: 0;
+  }
 `;
 
 export const PlansHeader = styled.div`
@@ -214,6 +217,7 @@ export const PlansHeaderSelect = styled.select`
   width: auto;
   color: ${({ theme }) => theme.colors.DarkText};
   cursor: pointer;
+  -webkit-appearance: none;
 `;
 
 export const HelpMark = styled.div``;
@@ -227,4 +231,5 @@ export const TooltipStyle: CSSProperties = {
   border: "1px solid #E5E5E5",
   position: "absolute",
   maxWidth: "300px",
+  zIndex: 99,
 };

@@ -12,7 +12,7 @@ export const Component = styled.nav`
   box-sizing: border-box;
   padding: 16px 80px;
   @media (max-width: 768px) {
-    padding: 60px 24px;
+    padding: 60px 24px 0 24px;
   }
 `;
 

@@ -8,7 +8,8 @@ npm install
 3. Then, run the development server:
 
 ```bash
-npm run dev
+npm run build
+npm run start
 ```
 
 Now, please open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
@@ -29,4 +30,4 @@ Now, please open [http://localhost:3000](http://localhost:3000) with your browse
 * [x] Test (unit, integration, e2e)
 * [x] Push to GitHub
 * [x] Documentation (README.md)
-* [ ] Accessibility
+* [x] Manual check on Chrome, Firefox, Safari, Edge

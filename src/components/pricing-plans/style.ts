@@ -15,7 +15,8 @@ export const Component = styled.section`
     grid-template-columns: repeat(2, 1fr);
   }
   @media (max-width: 768px) {
-    padding: 25px 25px 54px 25px;
+    padding: 25px 25px 44px 25px;
+    gap: 16px;
   }
 `;
 
@@ -209,6 +210,7 @@ export const PricingClarification = styled.div`
   text-align: center;
   color: ${({ theme }) => theme.colors.Grey400};
   margin-bottom: 150px;
+  padding: 0 25px;
   @media screen and (max-width: 768px) {
     display: none;
   }
