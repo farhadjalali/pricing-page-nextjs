@@ -11,12 +11,18 @@ export const Component = styled.nav`
   width: 100%;
   box-sizing: border-box;
   padding: 16px 80px;
+  @media (max-width: 768px) {
+    padding: 60px 24px;
+  }
 `;
 
 export const MenusWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 40px;
+  @media (max-width: 1320px) {
+    display: none;
+  }
 `;
 
 export const MenuItem = styled.div`
@@ -34,6 +40,9 @@ export const AuthWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 32px;
+  @media (max-width: 1320px) {
+    display: none;
+  }
 `;
 
 export const Signup = styled(Button)`
@@ -47,4 +56,17 @@ export const Login = styled(Button)`
   height: 48px;
   color: ${({ theme }) => theme.colors.DarkText};
   background-color: white;
+`;
+
+export const MobileMenu = styled.a`
+  @media (min-width: 1320px) {
+    display: none;
+  }
+`;
+
+export const BrandLink = styled.a`
+  width: 205px;
+  @media (max-width: 768px) {
+    width: 170px;
+  }
 `;

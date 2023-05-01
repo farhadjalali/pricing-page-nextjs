@@ -1,5 +1,9 @@
+import { Attributes, SVGAttributes } from "react";
+import { JsxAttribute } from "typescript";
+
 export const PriceHeadlineArrow = () => (
   <svg
+    style={{ verticalAlign: "middle", marginLeft: "4px" }}
     width="24"
     height="16"
     viewBox="0 0 24 16"

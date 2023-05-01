@@ -1,14 +1,18 @@
-import { Brand } from "@/assets/Brand";
+import { BrandIcon } from "./BrandIcon";
 import {
   AuthWrapper,
+  BrandLink,
   Component,
   MenuItem,
   MenusWrapper,
+  MobileMenu,
   Signup,
 } from "./style";
 import { MainMenu } from "@/types/MainMenu";
 import { I18n } from "@/types";
-import { MenuArrow } from "@/assets/MenuArrow";
+import { MenuArrow } from "./MenuArrow";
+import { MobileMenuIcon } from "./MobileMenuIcon";
+import { MobileAuthIcon } from "./MobileAuthIcon";
 
 type Props = {
   menu: MainMenu[];
@@ -18,7 +22,13 @@ type Props = {
 export const Header: React.FC<Props> = ({ menu, $t }) => {
   return (
     <Component>
-      <Brand />
+      <MobileMenu>
+        <MobileMenuIcon />
+      </MobileMenu>
+
+      <BrandLink href="/">
+        <BrandIcon />
+      </BrandLink>
 
       <MenusWrapper>
         {menu.map((item) => (
@@ -33,6 +43,10 @@ export const Header: React.FC<Props> = ({ menu, $t }) => {
         <div>{$t["login"]}</div>
         <Signup>{$t["signup"]}</Signup>
       </AuthWrapper>
+
+      <MobileMenu>
+        <MobileAuthIcon />
+      </MobileMenu>
     </Component>
   );
 };

@@ -18,8 +18,11 @@ import {
   PricingClarification,
   PaymentTypeButton,
   PaymentTypeWrapper,
+  WhatsIncluded,
 } from "./style";
-import { PriceHeadlineArrow } from "@/assets/PriceHeadlineArrow";
+import { PriceHeadlineArrow } from "@/components/pricing-plans/PriceHeadlineArrow";
+import { DropdownDownArrow } from "@/assets/DropdownDownArrow";
+import { isMobile } from "react-device-detect";
 
 type Props = {
   $t: I18n;
@@ -31,10 +34,10 @@ export const PricingPlans: React.FC<Props> = ({ plans, $t }) => {
     <>
       <PaymentTypeWrapper>
         <PaymentTypeButton selected>
-          {$t["plan.payment.type.annually"]}
+          {$t["pricing.payment-annually"]}
         </PaymentTypeButton>
 
-        <PaymentTypeButton>{$t["plan.payment.type.monthly"]}</PaymentTypeButton>
+        <PaymentTypeButton>{$t["pricing.payment-monthly"]}</PaymentTypeButton>
       </PaymentTypeWrapper>
 
       <Component>
@@ -59,17 +62,17 @@ export const PricingPlans: React.FC<Props> = ({ plans, $t }) => {
                 {monthlyPrice ? (
                   <Price>
                     ${monthlyPrice}{" "}
-                    <PriceMonthPhrase> /{$t["plan.month"]}</PriceMonthPhrase>
+                    <PriceMonthPhrase> /{$t["pricing.month"]}</PriceMonthPhrase>
                   </Price>
                 ) : (
-                  <Price>{$t["plan.free"]}</Price>
+                  <Price>{$t["pricing.free"]}</Price>
                 )}
                 <MonthlyComment>{monthlyPriceComment}</MonthlyComment>
               </PriceWrapper>
 
               <BenefitsWrapper>
                 <Headline>
-                  <span>{headline}</span>
+                  {headline}
                   {!!monthlyPrice && <PriceHeadlineArrow />}
                 </Headline>
 
@@ -78,8 +81,12 @@ export const PricingPlans: React.FC<Props> = ({ plans, $t }) => {
                     <BenefitsListItem key={benefit}>{benefit}</BenefitsListItem>
                   ))}
                 </BenefitsList>
-                <StartButton>{$t["plan.get-started"]}</StartButton>
+                <StartButton>{$t["pricing.get-started"]}</StartButton>
               </BenefitsWrapper>
+
+              <WhatsIncluded>
+                {$t["pricing.whats-included"]} <DropdownDownArrow />
+              </WhatsIncluded>
             </Card>
           )
         )}

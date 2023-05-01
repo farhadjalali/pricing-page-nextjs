@@ -3,11 +3,20 @@ import styled from "styled-components";
 export const Component = styled.section`
   display: grid;
   gap: 25px;
-  @media screen and (min-width: 768px) {
-    grid-template-columns: repeat(4, 1fr);
-    max-width: 1200px;
-  }
   padding: 40px 25px 54px 25px;
+  width: 100%;
+  box-sizing: border-box;
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 1250px;
+  }
+  @media (min-width: 768px) and (max-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (max-width: 768px) {
+    padding: 25px 25px 54px 25px;
+  }
 `;
 
 export const CardTitle = styled.h3`
@@ -44,18 +53,22 @@ export const PriceWrapper = styled.div`
   box-sizing: border-box;
   flex-direction: column;
   justify-content: center;
+  @media (max-width: 768px) {
+    padding: 12px 0;
+    margin: 0 32px;
+  }
 `;
 
-export const Headline = styled.div`
+export const Headline = styled.p`
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
   line-height: 125%;
   color: ${({ theme }) => theme.colors.Primary};
-  display: flex;
-  align-items: center;
-  gap: 8px;
   padding-bottom: 7px;
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 export const BenefitsWrapper = styled.div`
@@ -63,6 +76,10 @@ export const BenefitsWrapper = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
+  @media (max-width: 768px) {
+    padding: 0 0 8px 0;
+    margin: 0 32px;
+  }
 `;
 
 export const BenefitsList = styled.ul`
@@ -70,6 +87,9 @@ export const BenefitsList = styled.ul`
   margin-block-start: 0;
   margin-block-end: 0;
   padding-inline-start: 0;
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 export const BenefitsListItem = styled.li`
@@ -97,15 +117,11 @@ export const StartButton = styled.div`
   justify-content: center;
   align-items: center;
   padding: 19px 24px;
-  gap: 32px;
   border-radius: 31px;
   font-weight: 400;
   font-size: 18px;
   line-height: 100%;
-  text-align: center;
-  letter-spacing: 0.01em;
   color: #ffffff;
-  margin-top: auto;
   background-color: ${({ theme }) => theme.colors.Primary};
   cursor: pointer;
   outline: none;
@@ -113,6 +129,10 @@ export const StartButton = styled.div`
     border-color 0.15s ease-in-out 0s, color 0.15s ease-in-out 0s;
   :hover {
     background-color: #0099ac;
+  }
+  @media (max-width: 768px) {
+    padding: 19px 16px;
+    margin-top: 8px;
   }
 `;
 
@@ -127,9 +147,15 @@ export const Card = styled.div<{ hasTopHint: boolean }>`
   z-index: 1;
   border-radius: 24px;
   box-sizing: border-box;
-  margin-top: ${({ hasTopHint }) => (hasTopHint ? "" : "38px")};
   padding: 0 8px;
-  padding-top: ${({ hasTopHint }) => (!hasTopHint ? "" : "38px")};
+  @media (min-width: 768px) {
+    margin-top: ${({ hasTopHint }) => (hasTopHint ? "" : "38px")};
+    padding-top: ${({ hasTopHint }) => (!hasTopHint ? "" : "38px")};
+  }
+  @media (max-width: 768px) {
+    padding: 0;
+    padding-top: ${({ hasTopHint }) => (!hasTopHint ? "" : "38px")};
+  }
   box-shadow: #05555f0f 0px 10px 32px, #05555f0a 0px 8px 24px;
 `;
 
@@ -224,4 +250,19 @@ export const PaymentTypeButton = styled.div.attrs({
     selected
       ? "0px 10px 32px rgba(5, 85, 95, 0.06),0px 8px 24px rgba(5, 85, 95, 0.04)"
       : ""};
+`;
+
+export const WhatsIncluded = styled.div`
+  border-top: 1px solid #e5f4f5;
+  display: flex;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 125%;
+  color: ${({ theme }) => theme.colors.DarkText};
+  align-items: center;
+  padding: 16px 24px;
+  justify-content: space-between;
+  @media (min-width: 768px) {
+    display: none;
+  }
 `;

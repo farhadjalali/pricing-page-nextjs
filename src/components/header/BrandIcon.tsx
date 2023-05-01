@@ -1,6 +1,6 @@
-export const Brand = () => (
+export const BrandIcon = () => (
   <svg
-    width="205"
+    width="100%"
     height="16"
     viewBox="0 0 205 16"
     fill="none"

@@ -1,5 +1,13 @@
-export const DropdownDownArrow = () => (
+type Props = {
+  up?: boolean;
+};
+
+export const DropdownDownArrow: React.FC<Props> = ({ up }) => (
   <svg
+    style={{
+      transition: "transform 0.3s ease-in-out 0s",
+      transform: up ? "rotate(180deg)" : "rotate(0deg)",
+    }}
     width="10"
     height="8"
     viewBox="0 0 10 8"

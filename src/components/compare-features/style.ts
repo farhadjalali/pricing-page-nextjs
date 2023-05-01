@@ -10,16 +10,6 @@ export const Component = styled.section`
   @media (min-width: 768px) {
     padding: 0 25px;
   }
-
-  [data-plan-column="1"] {
-    display: none;
-  }
-  [data-plan-column="2"] {
-    display: none;
-  }
-  [data-plan-column="3"] {
-    display: none;
-  }
 `;
 
 export const FeaturesWrapper = styled.div`
@@ -90,11 +80,10 @@ export const FeatureTitle = styled.h4`
   line-height: 125%;
   color: ${({ theme }) => theme.colors.DarkText};
   padding: 0 16px;
-`;
-
-export const FeatureCompareItem = styled.div`
-  flex: 1;
-  text-align: center;
+  margin: 15px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 `;
 
 export const FeatureCompareItemBorder = styled.div<{ isFreePlan: boolean }>`
@@ -127,24 +116,22 @@ export const Title = styled.h2`
 
 export const PlansHeader = styled.div`
   position: sticky;
-  top: 0;
+  top: -8px;
+  z-index: 2;
   display: flex;
   border: 1px solid #e5f4f5;
 
   @media (min-width: 768px) {
-    padding-left: 300px;
+    padding-left: 332px;
     border-radius: 12px 12px 0 0;
   }
 
   @media (max-width: 768px) {
-    justify-content: flex-end;
-    padding-right: 20px;
-    border-left: none;
-    border-right: none;
+    display: none;
   }
 
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 16px;
+  padding-bottom: 16px;
   width: 100%;
   box-sizing: border-box;
   background-color: ${({ theme }) => theme.colors.Blue100};
@@ -154,20 +141,20 @@ export const PlansHeader = styled.div`
   color: ${({ theme }) => theme.colors.DarkText};
 `;
 
-export const PlansHeaderSelect = styled.select`
-  border: none;
-  background-color: transparent;
-  font-size: inherit;
-  font-weight: inherit;
-  outline: none;
-  width: 50%;
-  text-align: right;
-  padding-right: 20px;
-`;
-
 export const PlansHeaderItem = styled.div`
   flex: 1;
   text-align: center;
+  @media (max-width: 768px) {
+    width: 110px;
+  }
+`;
+
+export const FeatureCompareItem = styled.div<{ visibleOnMobile: boolean }>`
+  flex: 1;
+  text-align: center;
+  @media (max-width: 768px) {
+    display: ${({ visibleOnMobile }) => (visibleOnMobile ? "block" : "none")};
+  }
 `;
 
 export const ShowAvailableExchangeLink = styled.a`
@@ -188,4 +175,33 @@ export const ShowAvailableExchangeLink = styled.a`
   border: 1px solid #e5f4f5;
   border-top: none;
   border-radius: 0 0 12px 12px;
+`;
+
+export const MobileChoosePlan = styled.div`
+  color: ${({ theme }) => theme.colors.Primary};
+  position: sticky;
+  top: 0;
+  box-sizing: border-box;
+  padding: 24px;
+  width: 100%;
+  z-index: 2;
+  display: flex;
+  background-color: white;
+  justify-content: space-between;
+  border-bottom: 1px solid #e5f4f5;
+  @media (min-width: 768px) {
+    display: none;
+  }
+`;
+
+export const PlansHeaderSelect = styled.select`
+  border: none;
+  background-color: transparent;
+  font-size: inherit;
+  font-weight: 600;
+  outline: none;
+  text-align: right;
+  padding: 0 8px;
+  width: auto;
+  color: ${({ theme }) => theme.colors.DarkText};
 `;

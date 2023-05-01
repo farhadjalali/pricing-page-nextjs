@@ -16,4 +16,10 @@ export const PageTitle = styled.h1`
   color: ${({ theme }) => theme.colors.DarkText};
   padding: 56px 0 32px 0;
   margin: 0;
+
+  @media (max-width: 768px) {
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 120%;
+  }
 `;

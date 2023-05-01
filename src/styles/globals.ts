@@ -30,4 +30,9 @@ export const GlobalStyle = createGlobalStyle`
     color-scheme: "light";
     font-family: 'Sofia Pro', sans-serif;
   } 
+
+  p {
+    margin-block-start: 0;
+    margin-block-end: 0;
+  }
 `;

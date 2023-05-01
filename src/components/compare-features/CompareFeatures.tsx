@@ -15,6 +15,7 @@ import {
   PlansHeaderItem,
   ShowAvailableExchangeLink,
   Title,
+  MobileChoosePlan,
 } from "./style";
 import { DropdownDownArrow } from "@/assets/DropdownDownArrow";
 import { useState } from "react";
@@ -22,7 +23,7 @@ import { PlanFeature } from "@/types/PlanFeature";
 import { CheckNoIcon } from "@/assets/CheckNoIcon";
 import { CheckYesIcon } from "@/assets/CheckYesIcon";
 import { QuestionMark } from "@/assets/QuestionMark";
-import { isMobile } from "react-device-detect";
+import { Tooltip } from "react-tooltip";
 
 type Props = {
   $t: I18n;
@@ -31,6 +32,7 @@ type Props = {
 };
 
 export const CompareFeatures: React.FC<Props> = ({ features, $t, plans }) => {
+  const [selectedPlanOnMobile, setSelectedPlanOnMobile] = useState<string>("0");
   const [groupExpands, setGroupExpands] = useState<{
     [index: string]: boolean;
   }>({});
@@ -42,13 +44,23 @@ export const CompareFeatures: React.FC<Props> = ({ features, $t, plans }) => {
     });
   }
 
+  function getFeatureTooltipId(
+    featureGroup: CompareFeature,
+    feature: PlanFeature
+  ) {
+    return `feature-${featureGroup.index}-${feature.title.replace(/ /g, "-")}`;
+  }
+
   const FeatureCompare: React.FC<{ plan: any; feature: PlanFeature }> = ({
     plan,
     feature,
   }) => {
     const value = (feature.compare || [])[plan.index];
     return (
-      <FeatureCompareItem data-plan-column={plan.index} key={plan.index}>
+      <FeatureCompareItem
+        visibleOnMobile={selectedPlanOnMobile == plan.index}
+        key={plan.index}
+      >
         {!value ? (
           <CheckNoIcon />
         ) : value == "Y" ? (
@@ -64,24 +76,24 @@ export const CompareFeatures: React.FC<Props> = ({ features, $t, plans }) => {
 
   return (
     <Component>
-      <Title>{$t["price.features.title"]}</Title>
+      <Title>{$t["pricing.features.title"]}</Title>
 
-      {isMobile && (
-        <div>
-          Choose plan:{" "}
-          <PlansHeaderSelect>
-            {plans.map((plan) => (
-              <option key={plan.index}>{plan.title}</option>
-            ))}
-          </PlansHeaderSelect>
-        </div>
-      )}
+      <MobileChoosePlan>
+        {$t["pricing.choose-plan"]}:
+        <PlansHeaderSelect
+          onChange={(ev) => setSelectedPlanOnMobile(ev.target.value)}
+        >
+          {plans.map((plan) => (
+            <option key={plan.index} value={plan.index}>
+              {plan.title}
+            </option>
+          ))}
+        </PlansHeaderSelect>
+      </MobileChoosePlan>
 
       <PlansHeader>
         {plans.map((plan) => (
-          <PlansHeaderItem data-plan-column={plan.index} key={plan.index}>
-            {plan.title}
-          </PlansHeaderItem>
+          <PlansHeaderItem key={plan.index}>{plan.title}</PlansHeaderItem>
         ))}
       </PlansHeader>
 
@@ -95,7 +107,7 @@ export const CompareFeatures: React.FC<Props> = ({ features, $t, plans }) => {
                 {featureGroup.group}
                 {!!featureGroup.comment && <QuestionMark />}
               </FeatureGroupTitle>
-              <DropdownDownArrow />
+              <DropdownDownArrow up={groupExpands[featureGroup.index]} />
             </FeatureGroupTitleWrapper>
 
             <GroupsPanel expanded={groupExpands[featureGroup.index]}>
@@ -103,7 +115,29 @@ export const CompareFeatures: React.FC<Props> = ({ features, $t, plans }) => {
                 <FeatureRow key={feature.title}>
                   <FeatureTitle>
                     {feature.title}
-                    {!!feature.comment && <QuestionMark />}
+                    {!!feature.comment && (
+                      <>
+                        <QuestionMark
+                          data-tooltip-id={getFeatureTooltipId(
+                            featureGroup,
+                            feature
+                          )}
+                          data-tooltip-content={feature.comment}
+                        />
+                        <Tooltip
+                          style={{
+                            backgroundColor: "white",
+                            color: "#666",
+                            fontSize: "14px",
+                            padding: "10px 20px",
+                            borderRadius: "5px",
+                            border: "1px solid #E5E5E5",
+                            position: "absolute",
+                          }}
+                          id={getFeatureTooltipId(featureGroup, feature)}
+                        />
+                      </>
+                    )}
                   </FeatureTitle>
                   {plans.map((plan) => (
                     <FeatureCompare
