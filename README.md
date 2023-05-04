@@ -32,3 +32,4 @@ Now, please open [http://localhost:3000/pricing](http://localhost:3000/pricing) 
 * [x] Push to GitHub
 * [x] Documentation (README.md)
 * [x] Manual check on Chrome, Firefox, Safari, Edge
+* [x] Deploy to Netlify

@@ -1,3 +1,4 @@
+import { BlueRoundButton } from "@/common/BlueRoundButton";
 import { Button } from "@/common/Button";
 import styled from "styled-components";
 
@@ -35,6 +36,9 @@ export const MenuItem = styled.div`
   line-height: 125%;
   gap: 4px;
   cursor: pointer;
+  img {
+    margin-top: 3px;
+  }
 `;
 
 export const AuthWrapper = styled.div`
@@ -46,7 +50,7 @@ export const AuthWrapper = styled.div`
   }
 `;
 
-export const Signup = styled(Button)`
+export const Signup = styled(BlueRoundButton)`
   width: 104px;
   height: 48px;
   flex-grow: 0;
