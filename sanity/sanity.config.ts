@@ -9,7 +9,7 @@ const devOnlyPlugins = [getStartedPlugin()]
 
 export default defineConfig({
   name: 'default',
-  title: 'azure-donkey',
+  title: 'Pricing page nextjs',
 
   projectId: 'jp0od8zg',
   dataset: 'production',
