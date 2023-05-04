@@ -3,6 +3,7 @@ import {visionTool} from '@sanity/vision'
 import {deskTool} from 'sanity/desk'
 import {schemaTypes} from './schemas'
 import {getStartedPlugin} from './plugins/sanity-plugin-tutorial'
+import {markdownSchema} from 'sanity-plugin-markdown'
 
 const devOnlyPlugins = [getStartedPlugin()]
 
@@ -13,10 +14,9 @@ export default defineConfig({
   projectId: 'jp0od8zg',
   dataset: 'production',
 
-  plugins: [deskTool(), visionTool(), ...(isDev ? devOnlyPlugins : [])],
+  plugins: [markdownSchema(), deskTool(), visionTool(), ...(isDev ? devOnlyPlugins : [])],
 
   schema: {
     types: schemaTypes,
   },
 })
-

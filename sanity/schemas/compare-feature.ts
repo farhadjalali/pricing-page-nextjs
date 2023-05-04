@@ -17,14 +17,25 @@ export default {
     },
     {
       name: 'comment',
-      type: 'string',
+      type: 'text',
       title: 'Comment',
+      rows: 3,
     },
     {
       name: 'features',
       type: 'array',
       of: [{type: 'plan-feature'}],
       title: 'Features',
+    },
+    {
+      name: 'desc',
+      type: 'markdown',
+      title: 'Desc',
+    },
+    {
+      name: 'image',
+      type: 'image',
+      title: 'Image',
     },
   ],
 }
